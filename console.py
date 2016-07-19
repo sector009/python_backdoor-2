@@ -102,7 +102,7 @@ def prompt():
                             f.write(l)
                             l = session.recv(1024)
 
-                    print("Process done\n")
+                    print("Download complete\n")
                     # closing file
                     f.close()
                     break
