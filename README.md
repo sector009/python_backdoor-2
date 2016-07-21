@@ -3,7 +3,7 @@
 
 Backdoor written in Python that will give reverse shell to attacker. The server will be listening on victim machine for incoming connection.
 
-And if you target Windows machine, use _winrag module to edit Registry therefore you can add auto run key with fake procress name. For *nix machines, there is a file called /etc/init.d which is similar to Windows Registry
+And if you target Windows machine, use _winrag module to edit Registry therefore you can add auto run key with fake procress name. For *nix machines, there is a directory called /etc/init.d which is similar to Windows Registry
 
 ##### Features: Upload scripts for further attacks such as gaining Admin access or use at bot for DDOS. Steal(download) Datas. use 'exit' to disconnect and you can reconnect easily. For commands in detials, type 'help' in console.
 
