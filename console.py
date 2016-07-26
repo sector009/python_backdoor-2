@@ -14,7 +14,7 @@ END_OF_FILE = "[XX]END OF DATA[XX]"
 
 
 def banner():
-    # you can remove banner at line number 44
+    # you can remove banner at line number 43
     print("""╦ ╦╔═╗╔═╗╦╔═  ╔╦╗╦ ╦╔═╗  ╔═╗╦  ╔═╗╔╗╔╔═╗╔╦╗
 ╠═╣╠═╣║  ╠╩╗   ║ ╠═╣║╣   ╠═╝║  ╠═╣║║║║╣  ║
 ╩ ╩╩ ╩╚═╝╩ ╩   ╩ ╩ ╩╚═╝  ╩  ╩═╝╩ ╩╝╚╝╚═╝ ╩\n""")
@@ -34,13 +34,21 @@ def help():
     print("")
 
 
-def connectServer(ip, port):
+def connectServer(ip, port, password):
     global session, remoteIP
     session = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     remoteIP = ip
 
     try:
         session.connect((remoteIP, port))
+
+        session.send(password)
+        access = session.recv(1024)
+        print(access)
+        if access != "Access Granted":
+            session.close()
+            exit()
+
         banner()
         print("Connected to remote host")
         info()
@@ -153,8 +161,8 @@ def printOnConsole(string):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("python console.py ip port")
+    if len(sys.argv) != 4:
+        print("python console.py ip port password")
         exit()
     else:
-        connectServer(sys.argv[1], int(sys.argv[2]))
+        connectServer(sys.argv[1], int(sys.argv[2]), sys.argv[3])
